@@ -115,3 +115,6 @@ function validAnagram(first, second) {
   return true;
 }
 
+// This function will find each letter in one array, and count UP how many times each letter occurs in that array. 
+  // Then, it will take a second array, and do the same, except it will count DOWN for each time each letter occurs.
+  // If the keys in the object all have a value of 0 at the end, it will return true.
