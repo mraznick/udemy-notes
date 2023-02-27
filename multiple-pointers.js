@@ -65,7 +65,7 @@ function sumZero(arr) {
         // there's no comparison or if statement), then the left pointer needs to move up, because there
         // must not be a number low enough to combine with the highest number to equal 0.
         // With the array we're using, this won't be the case until the operation of
-        // (-4 + 2 = -2)
+        // (-4 + 2 = -2) (in the first array ofc)
     } else {
       left++;
     }
@@ -73,3 +73,5 @@ function sumZero(arr) {
 }
 
 console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 5])) // [2, -2]
+
+console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 3, 10])) // [-3, 3]
