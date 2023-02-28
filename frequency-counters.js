@@ -118,3 +118,82 @@ function validAnagram(first, second) {
 // This function will find each letter in one array, and count UP how many times each letter occurs in that array. 
   // Then, it will take a second array, and do the same, except it will count DOWN for each time each letter occurs.
   // If the keys in the object all have a value of 0 at the end, it will return true.
+
+
+// MORE PROBLEMS AND EXAMPLES:
+
+// Write a function called sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits.
+  // Your solution MUST have time complexity O(N).
+
+  // MY ANSWER:
+
+  function sameFrequency(int1, int2) {
+    // initialize objects to assign key value pairs to the two integers
+    let freqCount1 = {};
+    let freqCount2 = {};
+    
+    // initialize variables to store the integers that are converted to arrays
+    let arr1 = Array.from(String(int1), Number)
+    let arr2 = Array.from(String(int2), Number)
+    
+    // edge case to return false if the integers (now arrays) are different lengths
+    if(arr1.length !== arr2.length) {
+        return false;
+    }
+    
+    // count how many times a certain number occurs within int1 (now arr1) and store as value in empty object
+      // do this for both int1 & int2/arr1 & arr2.
+    for (let val of arr1) {
+      freqCount1[val] = (freqCount1[val] || 0) + 1  
+    }
+    
+    for (let val of arr2) {
+        freqCount2[val] = (freqCount2[val] || 0) + 1
+    }
+  
+    // compare keys in each object - if one object does not have matching keys to the other object, return false
+      // otherwise, it will skip these steps and just return true.
+    for (let key in freqCount1) {
+        if(!(key in freqCount2)) {
+            return false
+        }
+    }
+      for (let key in freqCount2) {
+        if(!(key in freqCount1)) {
+            return false
+        }
+    }
+     return true; 
+  }
+  
+  // UDEMY ANSWER:
+
+function sameFrequency(num1, num2) {
+  // Convert integers to strings
+    let strNum1 = num1.toString();
+    let strNum2 = num2.toString();
+  
+  // Edge case to return false if string lengths don't match
+    if(strNum1.length !== strNum2.length) return false;
+  
+  // Initialize empty objects
+    let countNum1 = {};
+    let countNum2 = {};
+  
+  // First pointer iterates through string1 to tally occurences of each number, plugging tallies into the empty object countNum1
+    for(let i = 0; i < strNum1.length; i++){
+      countNum1[strNum1[i]] = (countNum1[strNum1[i]] || 0) + 1
+    }
+    
+  // Second pointer iterates through string2 to tally occurences of each number, plugging tallies into the empty object countNum2
+    for(let j = 0; j < strNum1.length; j++){
+      countNum2[strNum2[j]] = (countNum2[strNum2[j]] || 0) + 1
+    }
+  
+  // Initialize keys in first object and compare to second object; return false if anything is missing
+    for(let key in countNum1){
+      if(countNum1[key] !== countNum2[key]) return false;
+    }
+   
+    return true;
+  }

@@ -1,7 +1,12 @@
+// MULTIPLE POINTERS: SUMZERO AND COUNTUNIQUEVALUES
+
 // Not an official title for this method but...
 // This is when we create multiple pointers or values that correspond to an inddex or position and
   // move towards the beginning, end, or middle based on a certain condition.
   // This method is very efficient for solving problems with minimal space complexity as well.
+
+
+                            // SUM ZERO
 
 // Write a function called sumZero which accepts a sorted array of integers. 
   // The function should find the first pair where the sum is 0. Return an array that includes both values that
@@ -75,3 +80,53 @@ function sumZero(arr) {
 console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 5])) // [2, -2]
 
 console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 3, 10])) // [-3, 3]
+
+
+                                // COUNT UNIQUE VALUES
+
+// Implemennt a function called countUniqueValues, which accepts a sorted array,
+  // and counts the unique values in the array. There can be negative numbers in the array,
+  // but it will always be sorted.
+
+  // Examples:
+    // countUniqueValues([1, 1, 1, 1, 1, 2]) --> 2
+    // countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]) --> 7
+    // countUniqueValues([ ]) --> 0
+    // countUniqueValues([-2, -1, -1, 0, 1]) --> 4
+
+// [1, 1, 1, 2, 3, 3, 4, 4, 5, 6]
+
+// In the above array, we're going to have two pointers. One will be or sort of "base,"
+  // while the other is the "scout." The base pointer will be one element to compare to the scout.
+  // As the scout iterates through, the base will compare itself to the scout. The base will not
+  // move or follow the scout until the scout finds a new element.
+  // So the base stays at 1, and the scout will continue to move forward until it hits 2.
+  // Once that happens, our function will have the base change the following element to a 2,
+  // which sets a new base, and the scout will go out searching again until it finds the 3.
+  // The process will repeat until the array looks like this: [1, 2, 3, 4, 5, 6, 4, 4, 5, 6],
+  // and whatever index our base ends up at will also be the amount of unique values.
+  // In this case, the i will end up at index 5, and we just need to add a +1 to the output so that
+  // it returns "6 unique values."
+
+
+function countUniqueValues(arr) {
+  // Edge case to return 0 for empty arrays
+  if (arr.length === 0) return 0;
+  // sets the base at 0
+  var i = 0;
+  for (var j = 1; j < arr.length; j++) {
+    // Check whether i and j are equal to another (we want them to NOT be equal)
+    if (arr[i] !== arr[j]) {
+      // move i up one index
+      i++;
+      // Set the value at index of i to the same value at index of j
+      arr[i] = arr[j]
+    }
+    // Use this console log to see the function doing its work
+    // console.table(i, j)
+  }
+  return i + 1;
+}
+
+console.log(countUniqueValues([[1, 1, 1, 2, 3, 3, 4, 4, 5, 6]]))
+
