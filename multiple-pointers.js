@@ -132,3 +132,58 @@ console.log(countUniqueValues([[1, 1, 1, 2, 3, 3, 4, 4, 5, 6]]))
 
 // MORE PROBLEMS/EXAMPLES
 
+// Implement a function called areThereDuplicates, which accepts a variable number of arguments, and checks whether there are any duplicates among
+  // the arguments passed in. You can use either frequency counter or multiple pointers.
+
+  // Examples:
+    // areThereDuplicates(1, 2, 3) --> false
+    // areThereDuplicates(1, 2, 2) --> true
+    // areThereDuplicates('a', 'b', 'c', 'd', 'a') --> true
+
+// tbh I had no idea how to do this one, especially in terms of how to handle variable arguments. Can be strings, integers, arrays, etc. Would I just want to 
+  // convert each set of data to a string, and if it's already a string just move on?
+  // After seeing solutions: looks like there's a keyword in JS 'arguments' that literally just covers everything lol cool
+
+// UDEMY ANSWER (FREQUENCY COUNTER VERSION):
+
+function areThereDuplicates() {
+  // initialize empty object, same as other freqCount functions
+  let collection = {}
+  // for in loop to set values based on arguments that are plugged into the function
+  for (let val in arguments) {
+    collection[arguments[val]] = (collection[arguments[val]] || 0) + 1
+  }
+  // iterate through keys to see if any values are higher than 1, indicating duplicates
+  for (let key in collection) {
+    if(collection[key] > 1) return true
+  }
+  return false
+}
+
+
+// UDEMY ANSWER (MULTIPLE POINTERS VERSION):
+
+function areThereDuplicates(...args) {
+  // Two pointers <-- this comment was in the Udemy answer. I still have no idea what this .sort is doing, and why a and b never show up in the function again
+    // does this convert them to an array or something??
+  args.sort((a, b) => a > b);
+  // I thought these were the pointers? One starts at the first element, the other starts at the second element?
+  let start = 0;
+  let next = 1;
+  // as the two pointers iterate, they compare their values. If they match, return true. Otherwise, continue along the argument until either a dupe is found or
+    // return false
+  while (next < args.length) {
+    if (args[start] === args[next]) {
+      return true
+    }
+    start++
+    next++
+  }
+  return false
+}
+
+// UDEMY ANSWER (ONE LINER VERSION LOL SICK NO IDEA WHAT IT'S DOING THOUGH):
+
+function areThereDuplicates() {
+  return new Set(arguments).size !== arguments.length;
+}
