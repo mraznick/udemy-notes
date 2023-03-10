@@ -187,3 +187,45 @@ function collectOdds(arr) {
 
   return result
 }
+
+
+// Now we're going to collect all the odd values using... 
+                  
+                                            // *~*~*~* PURE RECURSION *~*~*~* \\
+
+  // That means the function itself is totally self-contained,
+  // No external data structure (e.g. the result variable above)
+  // No nested function like above in the helper method
+  // Pure recursion is shorter but a bit harder to understand.
+
+function collectOddPure(arr) {
+    // If you define a new array each time through, it'll reset to be empty.
+      // Apparently we want it to work that way, and concatenate all the arrays at the end
+    let newArr = [];
+    // Base case to make sure it's not empty
+    if (arr.length === 0) {
+      return newArr;
+    }
+    // Check to see the first value is odd
+  if (arr[0] % 2 !== 0) {
+      // If it is, push it to the front of the new array
+        // Which, in our case, makes our new array look like this: [1]
+      newArr.push(arr[0]);
+    }
+    // Then, assign the current value of the new array as the result of collectOddPure on the rest of the original input
+      // So written out manually, this is what we get the first time through:
+      // [1].concat(collectOddPure[2, 3, 4, 5]), which is the recursive part duh. At which point we run through the whole thing again,
+        // Now, the function skips over 2: [].concat(collectOddPure[3, 4, 5]).
+          // Next time through: [3].concat(collectOddPure[4, 5])
+            // Then:[].concat(collectOddPure[5])
+              // Then:[5].concat(collectOddPure[]) --> now we finally have an empty array as the input,
+                // but newArr is empty... so... now the function can finally concatenate as it works back up itself,
+                  // with the final return value being [1, 3, 5]
+    newArr = newArr.concat(collectOddPure(arr.slice(1)));
+    return newArr;
+}
+
+collectOddPure([1, 2, 3, 4, 5])
+
+
+
