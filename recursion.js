@@ -227,5 +227,9 @@ function collectOddPure(arr) {
 
 collectOddPure([1, 2, 3, 4, 5])
 
+// When using Pure Recursion on arrays, use methods like slice, the `spread operator`, and concat
+
+
+
 
 
