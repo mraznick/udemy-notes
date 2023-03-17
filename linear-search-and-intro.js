@@ -38,3 +38,6 @@ function linearSearchClean(arr, val) {
   }
   return -1;
 }
+
+// Linear Search BIG O is (best case scenario) O(1) or (worst) O(n) (which is also average)
+
