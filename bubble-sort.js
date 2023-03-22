@@ -115,3 +115,9 @@ function bubbleNoSwaps(arr) {
 }
 
 // Bubble sort time complexity: best case is O(N). 
+
+// Time Complexity:
+  // - Best: O(n)
+  // - Average: O(n^2)
+  // - Worst: O(n^2)
+  // - Space: O(1)

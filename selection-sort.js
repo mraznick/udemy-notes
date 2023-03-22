@@ -59,3 +59,9 @@ function selectionSortTwo(arr) {
 // SELECTION SORT TIME COMP: The above algos are about O(N^2). 
     // Selection Sort is easy to write, but isn't very efficient. It also just helps us
     // Prepare for the other sorting algos.
+
+// Time Complexity:
+  // - Best: O(n^2)
+  // - Average: O(n^2)
+  // - Worst: O(n^2)
+  // - Space: O(1)
