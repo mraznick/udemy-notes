@@ -154,7 +154,8 @@ pivot([4, 8, 2, 1, 5, 7, 6, 3])
 
 function quickSort(arr, left = 0, right = arr.length - 1) {
   // base case for stopping when a subarray is less than 2 elements long
-  if (left < right) {    
+  if (left < right) {
+    // implement our pivot helper on array, left, and right
     let pivotIndex = pivot(arr, left, right); // pivot index currentlty = 3
     // left side quick sort, which still starts at index 0, but only goes to one element before the pivotIndex:
     quickSort(arr, left, pivotIndex - 1);
@@ -165,3 +166,10 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 }
 
 console.log(quickSort([4, 6, 9, 1, 2, 5, 3]))
+
+// BIG O COMPLEXITY OF QUICKSORT:
+  // - Best: O(n log n)
+  // - Average: O(n log n)
+  // - Worst: O(n^2) <-- we only ran quick sort by using the first element as our pivot. But if our data is mostly sorted, it's a lot of useless comparing and sorting 
+    // - O(n) decompositions; O(n) comparisons
+  // - Space: O(log n)
